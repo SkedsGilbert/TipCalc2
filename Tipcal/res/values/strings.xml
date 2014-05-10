@@ -12,6 +12,7 @@
     <string name="finalBillEditText">0.00</string>
     <string name="changeTipTextView">Tip</string>
     <string name="adjustTipTextView">Adjust Tip %</string>
+    <string name="percentTextView">%</string>
     
 
 </resources>
