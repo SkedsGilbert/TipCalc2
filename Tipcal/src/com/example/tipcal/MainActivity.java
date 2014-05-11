@@ -18,7 +18,8 @@ public class MainActivity extends ActionBarActivity {
 	private static final String BILL_WITHOUT_TIP = "BILL_WITHOUT_TIP";
 	
 	private double billBeforeTip;
-	private double tipAmount;
+	private int tipAmount;
+//	private double tipAmount;
 	private double finalBill;
 	
 	EditText etBillBeforeTip;
@@ -86,7 +87,8 @@ public class MainActivity extends ActionBarActivity {
 				boolean fromUser) {
 			
 			tipAmount = (tipSeekBar.getProgress());
-			tvTipAmount.setText(Double.toString(tipAmount));
+			//change the int to double if not working
+			tvTipAmount.setText(Integer.toString(tipAmount));
 			
 			updateTipFinalBill();
 			
@@ -117,7 +119,8 @@ public class MainActivity extends ActionBarActivity {
 		super.onSaveInstanceState(outState);
 
 		outState.putDouble(TOTAL_BILL, finalBill);
-		outState.putDouble(CURRENT_TIP, tipAmount);
+		//Changed to Int here
+		outState.putInt(CURRENT_TIP, tipAmount);
 		outState.putDouble(BILL_WITHOUT_TIP, billBeforeTip);
 
 	}

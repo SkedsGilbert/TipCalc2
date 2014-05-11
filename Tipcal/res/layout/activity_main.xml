@@ -37,17 +37,6 @@
         android:layout_marginTop="16dp"
         android:text="@string/adjustTipTextView" />
 
-    <TextView
-        android:id="@+id/tipEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/adjustTipTextView"
-        android:layout_alignRight="@+id/tipSeekBar"
-        android:layout_marginRight="48dp"
-        android:ems="3"
-        android:inputType="numberDecimal"
-        android:text="@string/tipEditText" />
-
     <EditText
         android:id="@+id/finalBillEditText"
         android:layout_width="wrap_content"
@@ -75,22 +64,32 @@
         android:progress="15" />
 
     <TextView
-        android:id="@+id/percentTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/adjustTipTextView"
-        android:layout_alignRight="@+id/tipEditText"
-        android:layout_marginRight="14dp"
-        android:ems="1"
-        android:text="@string/percentTextView" />
-
-    <TextView
         android:id="@+id/tipTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/billEditText"
-        android:layout_toLeftOf="@+id/tipEditText"
+        android:layout_marginLeft="64dp"
+        android:layout_toRightOf="@+id/percentTextView"
         android:text="@string/tipTextView" />
+
+    <TextView
+        android:id="@+id/tipEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tipSeekBar"
+        android:layout_toRightOf="@+id/adjustTipTextView"
+        android:ems="3"
+        android:inputType="numberDecimal"
+        android:text="@string/tipEditText" />
+
+    <TextView
+        android:id="@+id/percentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tipSeekBar"
+        android:layout_alignRight="@+id/billEditText"
+        android:ems="1"
+        android:text="@string/percentTextView" />
 
 </RelativeLayout>
 
