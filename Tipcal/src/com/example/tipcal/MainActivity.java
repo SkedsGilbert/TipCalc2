@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 	
@@ -24,6 +25,8 @@ public class MainActivity extends ActionBarActivity {
 	EditText etTipAmount;
 	EditText etFinalBill;
 	
+	TextView tvTipAmount;
+	
 	SeekBar tipSeekBar;
 	
 	
@@ -34,14 +37,14 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         
         etBillBeforeTip = (EditText) findViewById(R.id.billEditText);
-        etTipAmount = (EditText) findViewById(R.id.tipEditText);
+//        etTipAmount = (EditText) findViewById(R.id.tipEditText);
         etFinalBill = (EditText) findViewById(R.id.finalBillEditText);
         
         etBillBeforeTip.addTextChangedListener(billBeforeTipListener);
         
         tipSeekBar = (SeekBar) findViewById(R.id.tipSeekBar);
         tipSeekBar.setOnSeekBarChangeListener(tipSeekBarListener);
-        
+        tvTipAmount = (TextView) findViewById(R.id.tipEditText);
 
     }
     
@@ -82,8 +85,8 @@ public class MainActivity extends ActionBarActivity {
 		public void onProgressChanged(SeekBar seekBar, int progress,
 				boolean fromUser) {
 			
-			tipAmount = (tipSeekBar.getProgress()) * .01;
-			etTipAmount.setText(String.format("%.02f", tipAmount));
+			tipAmount = (tipSeekBar.getProgress());
+			tvTipAmount.setText(Double.toString(tipAmount));
 			
 			updateTipFinalBill();
 			
@@ -105,7 +108,7 @@ public class MainActivity extends ActionBarActivity {
 
     private void updateTipFinalBill(){
     	
-    	double tipAmount = Double.parseDouble(etTipAmount.getText().toString());
+    	double tipAmount = Double.parseDouble(tvTipAmount.getText().toString()) * .01 ;
     	double finalBill = billBeforeTip + (billBeforeTip * tipAmount);
     	etFinalBill.setText(String.format("%.02f", finalBill));
     }
