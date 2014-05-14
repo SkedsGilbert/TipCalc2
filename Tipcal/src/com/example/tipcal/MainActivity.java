@@ -56,7 +56,6 @@ public class MainActivity extends ActionBarActivity {
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count,
 				int after) {
-			// TODO Auto-generated method stub
 			
 		}
 
@@ -88,6 +87,8 @@ public class MainActivity extends ActionBarActivity {
 		public void onProgressChanged(SeekBar seekBar, int progress,
 				boolean fromUser) {
 			
+			
+			
 			tipAmount = (tipSeekBar.getProgress());
 			//change the int to double if not working
 			tvTipAmount.setText(Integer.toString(tipAmount));
@@ -104,7 +105,9 @@ public class MainActivity extends ActionBarActivity {
 
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
-			// TODO Auto-generated method stub
+			
+			etBillBeforeTip.clearFocus();
+			
 			
 		}
     	

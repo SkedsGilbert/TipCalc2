@@ -16,6 +16,7 @@
         android:layout_toRightOf="@+id/billTextView"
         android:ems="4"
         android:inputType="numberDecimal"
+        android:selectAllOnFocus="true"
         android:text="@string/billEditText" />
 
     <TextView
