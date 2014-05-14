@@ -27,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
 	EditText etFinalBill;
 	
 	TextView tvTipAmount;
+	TextView amountToTipTextView;
 	
 	SeekBar tipSeekBar;
 	
@@ -46,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
         tipSeekBar = (SeekBar) findViewById(R.id.tipSeekBar);
         tipSeekBar.setOnSeekBarChangeListener(tipSeekBarListener);
         tvTipAmount = (TextView) findViewById(R.id.tipEditText);
+        amountToTipTextView = (TextView) findViewById(R.id.amountToTipTextView);
 
     }
     
@@ -112,6 +114,9 @@ public class MainActivity extends ActionBarActivity {
     	
     	double tipAmount = Double.parseDouble(tvTipAmount.getText().toString()) * .01 ;
     	double finalBill = billBeforeTip + (billBeforeTip * tipAmount);
+    	double amountToTip = finalBill - billBeforeTip;
+    	System.out.println(amountToTip);
+    	amountToTipTextView.setText(String.format("%.02f", amountToTip));
     	etFinalBill.setText(String.format("%.02f", finalBill));
     }
     

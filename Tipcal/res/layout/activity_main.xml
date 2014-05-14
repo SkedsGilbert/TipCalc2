@@ -79,7 +79,6 @@
         android:layout_above="@+id/tipSeekBar"
         android:layout_toRightOf="@+id/adjustTipTextView"
         android:ems="3"
-        android:inputType="numberDecimal"
         android:text="@string/tipEditText" />
 
     <TextView
@@ -90,6 +89,16 @@
         android:layout_alignRight="@+id/billEditText"
         android:ems="1"
         android:text="@string/percentTextView" />
+
+    <TextView
+        android:id="@+id/amountToTipTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/billEditText"
+        android:layout_alignBottom="@+id/billEditText"
+        android:layout_alignRight="@+id/finalBillTextView"
+        android:text="@string/amountToTipTextView"
+        android:textSize="17dp" />
 
 </RelativeLayout>
 

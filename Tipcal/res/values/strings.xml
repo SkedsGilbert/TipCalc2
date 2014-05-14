@@ -13,6 +13,7 @@
     <string name="changeTipTextView">Tip</string>
     <string name="adjustTipTextView">Adjust Tip:  </string>
     <string name="percentTextView">%</string>
+    <string name="amountToTipTextView">0.00</string>
     
 
 </resources>
