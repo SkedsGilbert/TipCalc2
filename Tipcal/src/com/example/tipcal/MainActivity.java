@@ -24,8 +24,9 @@ public class MainActivity extends ActionBarActivity {
 	
 	EditText etBillBeforeTip;
 	EditText etTipAmount;
-	EditText etFinalBill;
+//	EditText etFinalBill;
 	
+	TextView etFinalBill;
 	TextView tvTipAmount;
 	TextView amountToTipTextView;
 	
@@ -39,8 +40,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         
         etBillBeforeTip = (EditText) findViewById(R.id.billEditText);
-//        etTipAmount = (EditText) findViewById(R.id.tipEditText);
-        etFinalBill = (EditText) findViewById(R.id.finalBillEditText);
+        etFinalBill = (TextView) findViewById(R.id.finalBillEditText);
         
         etBillBeforeTip.addTextChangedListener(billBeforeTipListener);
         

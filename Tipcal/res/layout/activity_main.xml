@@ -37,15 +37,14 @@
         android:layout_marginTop="16dp"
         android:text="@string/adjustTipTextView" />
 
-    <EditText
+    <TextView
         android:id="@+id/finalBillEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/finalBillTextView"
         android:layout_toRightOf="@+id/tipTextView"
-        android:ems="5"
-        android:inputType="numberDecimal"
-        android:text="@string/finalBillEditText" />
+        android:text="@string/finalBillEditText" 
+        android:textSize="17dp"/>
 
     <TextView
         android:id="@+id/finalBillTextView"
