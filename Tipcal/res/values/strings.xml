@@ -18,7 +18,26 @@
     <string name="introFriendlyTextView">Friendly</string>
     <string name="introSpecialsTextView">Specials</string>
     <string name="introOpinionTextView">Opinion</string>
-    <string name="availabilityTextView">Availability</string>
+    
+    <string name="hotnessFactorTextView">How Hot?</string>
+    <string name="hotnessColdRadioBttn">Cold</string>
+    <string name="hotnessWarmRadioBttn">Warm</string>
+    <string name="hotnessSmokinHotRadioBttn">Smokin\' Hot</string>
+    
+    <string name="timeWaitingTextView">Time Waiting for Service</string>
+    <string name="startTimerBttn">Start</string>
+    <string name="pauseTimerBttn">Pause</string>
+    <string name="resetTimerBttn">Reset</string>
+    
+    <string-array name="problemSolving">
+        <item>Problem Solving</item>
+        <item>Bad</item>
+        <item>Ok</item>
+        <item>Good</item>        
+    </string-array>
+    
+    
+    
     
     
     
