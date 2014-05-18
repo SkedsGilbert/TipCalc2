@@ -6,10 +6,19 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Chronometer;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.RadioGroup;
 
 public class MainActivity extends ActionBarActivity {
 	
@@ -32,6 +41,29 @@ public class MainActivity extends ActionBarActivity {
 	
 	SeekBar tipSeekBar;
 	
+	private int[] checklistValues = new int[12];
+	
+	CheckBox friendlyCheckBox;
+	CheckBox specialsCheckBox;
+	CheckBox opinionCheckBox;
+	
+	RadioGroup howHotRadioGroup;
+	RadioButton howColdRadio;
+	RadioButton howWarmRadio;
+	RadioButton howSmokinRadio;
+	
+	Spinner problemsSpinner;
+	
+	Button startTimerBttn;
+	Button pauseTimerBttn;
+	Button resetTimerBttn;
+	
+	Chronometer timeWaitingChronometer;
+	
+	long secondsYouWaited = 0;
+	
+	
+	
 	
 
     @Override
@@ -48,6 +80,31 @@ public class MainActivity extends ActionBarActivity {
         tipSeekBar.setOnSeekBarChangeListener(tipSeekBarListener);
         tvTipAmount = (TextView) findViewById(R.id.tipEditText);
         amountToTipTextView = (TextView) findViewById(R.id.amountToTipTextView);
+        
+        friendlyCheckBox = (CheckBox) findViewById(R.id.friendlyCheckBox);
+    	specialsCheckBox = (CheckBox) findViewById(R.id.specialsCheckBox);
+    	opinionCheckBox = (CheckBox) findViewById(R.id.opinionCheckBox);
+    	
+    	setUpIntroCheckBoxes();
+        
+    	howHotRadioGroup = (RadioGroup) findViewById(R.id.howHotRadioGroup);
+    	howColdRadio = (RadioButton) findViewById(R.id.howColdRadio);
+    	howWarmRadio = (RadioButton) findViewById(R.id.howWarmRadio);
+    	howSmokinRadio = (RadioButton) findViewById(R.id.howSmokinRadio);
+    	
+    	addChangeListenerToRadios();
+    	
+    	problemsSpinner = (Spinner) findViewById(R.id.problemsSpinner);
+    	
+    	addItemSelectListenerToSpinner();
+    	
+    	startTimerBttn = (Button) findViewById(R.id.startTimerBttn);
+    	pauseTimerBttn = (Button) findViewById(R.id.pauseTimerBttn);
+    	resetTimerBttn = (Button) findViewById(R.id.resetTimerBttn);
+    	
+    	setButtonOnClickListeners();
+    	
+    	timeWaitingChronometer = (Chronometer) findViewById(R.id.timeWaitingChronometer);
 
     }
     
@@ -118,7 +175,6 @@ public class MainActivity extends ActionBarActivity {
     	double tipAmount = Double.parseDouble(tvTipAmount.getText().toString()) * .01 ;
     	double finalBill = billBeforeTip + (billBeforeTip * tipAmount);
     	double amountToTip = finalBill - billBeforeTip;
-    	System.out.println(amountToTip);
     	amountToTipTextView.setText(String.format("%.02f", amountToTip));
     	etFinalBill.setText(String.format("%.02f", finalBill));
     }
@@ -132,6 +188,20 @@ public class MainActivity extends ActionBarActivity {
 		outState.putDouble(BILL_WITHOUT_TIP, billBeforeTip);
 
 	}
+    
+    private void setUpIntroCheckBoxes(){
+    	
+    	friendlyCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				// TODO Auto-generated method stub
+				
+			}
+    		
+    	});
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
