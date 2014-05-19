@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Chronometer;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -18,7 +17,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.RadioGroup;
+
 
 public class MainActivity extends ActionBarActivity {
 	
@@ -30,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
 	private int tipAmount;
 //	private double tipAmount;
 	private double finalBill;
+	int checklistTotal = 0;
 	
 	EditText etBillBeforeTip;
 	EditText etTipAmount;
@@ -172,7 +172,8 @@ public class MainActivity extends ActionBarActivity {
 
     private void updateTipFinalBill(){
     	
-    	double tipAmount = Double.parseDouble(tvTipAmount.getText().toString()) * .01 ;
+    	double tipFromText = Double.parseDouble(tvTipAmount.getText().toString()) * .01;
+    	double tipAmount = tipFromText + checklistTotal;
     	double finalBill = billBeforeTip + (billBeforeTip * tipAmount);
     	double amountToTip = finalBill - billBeforeTip;
     	amountToTipTextView.setText(String.format("%.02f", amountToTip));
@@ -191,16 +192,74 @@ public class MainActivity extends ActionBarActivity {
     
     private void setUpIntroCheckBoxes(){
     	
-    	friendlyCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+    	friendlyCheckBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
+				
+				checklistValues[0] = (friendlyCheckBox.isChecked())?4:0;
+				
+				setTipFromWaitressChecklist();
+				updateTipFinalBill();
 				
 			}
     		
     	});
+    	
+    	specialsCheckBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				
+				checklistValues[1] = (specialsCheckBox.isChecked())?1:0;
+				
+				setTipFromWaitressChecklist();
+				updateTipFinalBill();
+				
+			}
+    		
+    	});
+    	
+    	opinionCheckBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				
+				checklistValues[2] = (opinionCheckBox.isChecked())?2:0;
+				
+				setTipFromWaitressChecklist();
+				updateTipFinalBill();
+				
+			}
+    		
+    	});
+    }
+    
+    private void addChangeListenerToRadios(){
+    	howHotRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+			
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				
+				checklistValues[3] = (howColdRadio.isChecked())?2:0;
+				
+			}
+
+			
+		});
+    }
+    
+    private void setTipFromWaitressChecklist(){
+    	
+    	
+    	for(int item : checklistValues){
+    		checklistTotal += item;
+    	}
+    	
+    	
+    	
     }
 
     @Override
