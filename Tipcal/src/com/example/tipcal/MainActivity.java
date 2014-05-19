@@ -1,11 +1,14 @@
 package com.example.tipcal;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Chronometer;
@@ -30,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
 //	private double tipAmount;
 	private double finalBill;
 	int checklistTotal = 0;
+	long secondsYouWait = 0;
 	
 	EditText etBillBeforeTip;
 	EditText etTipAmount;
@@ -243,12 +247,100 @@ public class MainActivity extends ActionBarActivity {
 			
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				
-				checklistValues[3] = (howColdRadio.isChecked())?2:0;
-				
+				checklistValues[3] = (howColdRadio.isChecked())?-1:0;
+				checklistValues[4] = (howWarmRadio.isChecked())?2:0;
+				checklistValues[5] = (howSmokinRadio.isChecked())?4:0;
+				setTipFromWaitressChecklist();
+				updateTipFinalBill();
 			}
 
 			
 		});
+    }
+    
+    private void addItemSelectListenerToSpinner(){
+    	
+    	problemsSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				
+				checklistValues[6] = (problemsSpinner.getSelectedItem()).equals("Bad")?-1:0;
+				checklistValues[7] = (problemsSpinner.getSelectedItem()).equals("Ok")?1:0;
+				checklistValues[8] = (problemsSpinner.getSelectedItem()).equals("Good")?2:0;
+				setTipFromWaitressChecklist();
+				updateTipFinalBill();
+				
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+    		
+    	});
+    	
+    }
+    
+    private void setButtonOnClickListeners(){
+    	startTimerBttn.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				
+				int stoppedMilliseconds = 0;
+				String chronoText = timeWaitingChronometer.getText().toString();
+				String array[] = chronoText.split(":");
+				
+				if(array.length == 2){
+					stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 1000 +
+							Integer.parseInt(array[1]) * 1000;
+				}else if(array.length == 3){
+					
+					stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 60 * 1000 +
+							Integer.parseInt(array[1]) * 60 * 1000
+							+ Integer.parseInt(array[2]) * 1000;
+				}
+				
+				timeWaitingChronometer.setBase(SystemClock.elapsedRealtime() - stoppedMilliseconds);
+				secondsYouWaited = Long.parseLong(array[1]);
+				updateTipBasedOnTime(secondsYouWaited);
+				timeWaitingChronometer.start();
+				
+			}
+    		
+    	});
+    	
+    	pauseTimerBttn.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				timeWaitingChronometer.stop();
+				
+			}
+    		
+    		
+    	});
+    	
+    	resetTimerBttn.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				
+				timeWaitingChronometer.setBase(SystemClock.elapsedRealtime());
+				secondsYouWaited = 0;
+				
+			}
+    		
+    	});
+    }
+    
+    private void updateTipBasedOnTime(long secondsYouWaited){
+    	checklistValues[9] = (secondsYouWaited > 10)?-2:2;
+    	
     }
     
     private void setTipFromWaitressChecklist(){
