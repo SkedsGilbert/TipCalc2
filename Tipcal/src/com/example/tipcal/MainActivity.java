@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
 	private int tipAmount;
 //	private double tipAmount;
 	private double finalBill;
-	int checklistTotal = 0;
+	double checklistTotal = 0;
 	long secondsYouWait = 0;
 	
 	EditText etBillBeforeTip;
@@ -252,6 +252,10 @@ public class MainActivity extends ActionBarActivity {
 				checklistValues[5] = (howSmokinRadio.isChecked())?4:0;
 				setTipFromWaitressChecklist();
 				updateTipFinalBill();
+				
+				System.out.println("This is checklistValues " + checklistValues[3]);
+				System.out.println("This is checklistValues " + checklistValues[4]);
+				System.out.println("This is checklistValues " + checklistValues[5]);
 			}
 
 			
@@ -271,6 +275,10 @@ public class MainActivity extends ActionBarActivity {
 				checklistValues[8] = (problemsSpinner.getSelectedItem()).equals("Good")?2:0;
 				setTipFromWaitressChecklist();
 				updateTipFinalBill();
+				
+				System.out.println("This is checklistValues " + checklistValues[6]);
+				System.out.println("This is checklistValues " + checklistValues[7]);
+				System.out.println("This is checklistValues " + checklistValues[8]);
 				
 				
 			}
@@ -347,8 +355,12 @@ public class MainActivity extends ActionBarActivity {
     	
     	
     	for(int item : checklistValues){
-    		checklistTotal += item;
+//    		checklistTotal += item;
+    		checklistTotal = checklistTotal + (item * .01);
+    		System.out.println("This is checklistTotal " + checklistTotal);
     	}
+    	
+    	
     	
     	
     	
