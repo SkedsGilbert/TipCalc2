@@ -179,8 +179,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/howHotRadioGroup"
         android:layout_below="@+id/howHotRadioGroup"
-        android:layout_marginTop="12dp" 
-        android:entries="@array/problemSolving"/>
+        android:layout_marginTop="12dp"
+        android:entries="@array/problemSolving" />
 
     <TextView
         android:id="@+id/timeWaitingTextView"
@@ -189,8 +189,6 @@
         android:layout_alignLeft="@+id/problemsSpinner"
         android:layout_below="@+id/problemsSpinner"
         android:text="@string/timeWaitingTextView" />
-
-    
 
     <Chronometer
         android:id="@+id/timeWaitingChronometer"
@@ -201,35 +199,52 @@
         android:text="Chronometer" />
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/timeWaitingTextView"
         android:layout_below="@+id/timeWaitingTextView"
         android:orientation="horizontal" >
-        
-     <Button
-        android:id="@+id/startTimerBttn"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/startTimerBttn" />
 
-    <Button
-        android:id="@+id/pauseTimerBttn"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/pauseTimerBttn" />
+        <Button
+            android:id="@+id/startTimerBttn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/startTimerBttn" />
 
-    <Button
-        android:id="@+id/resetTimerBttn"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/pauseTimerBttn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/pauseTimerBttn" />
+
+        <Button
+            android:id="@+id/resetTimerBttn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/resetTimerBttn" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayout1"
         android:layout_weight="1"
-        android:text="@string/resetTimerBttn" />   
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/resetAllbttn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/resetAllBttn" />
         
     </LinearLayout>
 

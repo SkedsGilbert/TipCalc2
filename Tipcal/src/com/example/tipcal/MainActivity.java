@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity {
 	Button startTimerBttn;
 	Button pauseTimerBttn;
 	Button resetTimerBttn;
+	Button resetAllBttn;
 	
 	Chronometer timeWaitingChronometer;
 	
@@ -105,6 +106,7 @@ public class MainActivity extends ActionBarActivity {
     	startTimerBttn = (Button) findViewById(R.id.startTimerBttn);
     	pauseTimerBttn = (Button) findViewById(R.id.pauseTimerBttn);
     	resetTimerBttn = (Button) findViewById(R.id.resetTimerBttn);
+    	resetAllBttn = (Button) findViewById(R.id.resetAllbttn);
     	
     	setButtonOnClickListeners();
     	
@@ -202,7 +204,7 @@ public class MainActivity extends ActionBarActivity {
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				
-				checklistValues[0] = (friendlyCheckBox.isChecked())?4:0;
+				checklistValues[0] = (friendlyCheckBox.isChecked())?2:0;
 				
 				setTipFromWaitressChecklist();
 				updateTipFinalBill();
@@ -344,6 +346,30 @@ public class MainActivity extends ActionBarActivity {
 			}
     		
     	});
+    	
+    	resetAllBttn.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				
+				etBillBeforeTip.setText(String.format("%.02f", 0.00));	
+				friendlyCheckBox.setChecked(false);
+		    	specialsCheckBox.setChecked(false);
+		    	opinionCheckBox.setChecked(false);
+				tipSeekBar.setProgress(15);			
+		    	checklistTotal = 0; 
+		    	
+		    	timeWaitingChronometer.setBase(SystemClock.elapsedRealtime());
+				secondsYouWaited = 0;
+		    	
+		    	for(int item : checklistValues){
+		    		item = 0;
+		    		System.out.println("item " + item);
+		    	}
+				
+			}
+    		
+    	});
     }
     
     private void updateTipBasedOnTime(long secondsYouWaited){
@@ -356,7 +382,7 @@ public class MainActivity extends ActionBarActivity {
     	
     	for(int item : checklistValues){
     		checklistTotal += item;
-    		System.out.println("This is checklistTotal " + checklistTotal);
+    		System.out.println("items " + item);
     	}
     	
     	int currentSeekBarStatus = tipSeekBar.getProgress();

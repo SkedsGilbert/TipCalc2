@@ -28,6 +28,7 @@
     <string name="startTimerBttn">Start</string>
     <string name="pauseTimerBttn">Pause</string>
     <string name="resetTimerBttn">Reset</string>
+    <string name="resetAllBttn">Reset All</string>
     
     <string-array name="problemSolving">
         <item>Problem Solving</item>
