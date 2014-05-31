@@ -151,8 +151,8 @@ public class MainActivity extends ActionBarActivity {
 			
 			
 			tipAmount = (tipSeekBar.getProgress());
-			//change the int to double if not working
 			tvTipAmount.setText(Integer.toString(tipAmount));
+			System.out.println("Get Progress" + tipSeekBar.getProgress());
 			
 			updateTipFinalBill();
 			
@@ -355,14 +355,16 @@ public class MainActivity extends ActionBarActivity {
     	
     	
     	for(int item : checklistValues){
-//    		checklistTotal += item;
-    		checklistTotal = checklistTotal + (item * .01);
+    		checklistTotal += item;
     		System.out.println("This is checklistTotal " + checklistTotal);
     	}
     	
+    	int currentSeekBarStatus = tipSeekBar.getProgress();
+    	int newSeekBarStatus = (int) (currentSeekBarStatus + checklistTotal);
     	
+    	tipSeekBar.setProgress(newSeekBarStatus);
     	
-    	
+    	checklistTotal = 0;    	
     	
     }
 
@@ -386,20 +388,4 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-    }
-*/
 }
